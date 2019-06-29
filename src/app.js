@@ -12,3 +12,68 @@ new Vue({
         loading1: false
     }
 })
+
+
+
+//单元测试
+import chai from 'chai';
+const expect = chai.expect;
+//icon设置
+{
+    const constructor = Vue.extend(Button);
+    const button = new constructor({
+        propsData: {
+            icon: 'setting',
+        }
+    });
+    button.$mount()
+    let useElement = button.$el.querySelector('use');
+    expect(useElement.getAttribute('xlink:href')).to.eq('#i-setting')
+    button.$el.remove();
+    button.$destroy();
+}
+//loading
+{
+    const constructor = Vue.extend(Button);
+    const button = new constructor({
+        propsData: {
+            icon: 'setting',
+            loading: true
+        }
+    });
+    button.$mount()
+    let useElement = button.$el.querySelector('use');
+    expect(useElement.getAttribute('xlink:href')).to.eq('#i-loading')
+    button.$el.remove();
+    button.$destroy();
+}
+//按钮是否在右边
+{
+    const constructor = Vue.extend(Button);
+    const button = new constructor({
+        propsData: {
+            icon: 'setting',
+            iconLocate: 'right'
+        }
+    });
+    button.$mount('#test')
+    let svg = button.$el.querySelector('svg');
+    let { order } = window.getComputedStyle(svg)
+    expect(order).to.eq('2')
+}
+//button click事件
+{
+    const constructor = Vue.extend(Button);
+    const vButton = new constructor({
+        propsData: {
+            icon: 'setting'
+        }
+    })
+    vButton.$mount();
+    vButton.$on('click',function(){
+        expect('1').to.eq('1')
+    })
+    console.log(vButton)
+    let vBtn = vButton.$el;
+    vBtn.click()
+}
