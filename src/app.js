@@ -17,7 +17,10 @@ new Vue({
 
 //单元测试
 import chai from 'chai';
+import spies from 'chai-spies'
 const expect = chai.expect;
+chai.use(spies)
+
 //icon设置
 {
     const constructor = Vue.extend(Button);
@@ -70,10 +73,17 @@ const expect = chai.expect;
         }
     })
     vButton.$mount();
-    vButton.$on('click',function(){
-        expect('1').to.eq('1')
-    })
-    console.log(vButton)
+
+    // vButton.$on('click',function(){
+    //     expect('1').to.eq('1')
+    // })
+    // console.log(vButton)
+    // let vBtn = vButton.$el;
+    // vBtn.click()
+    //使用chai-spy改写上面的
+    let spy = chai.spy(function(){})
+    vButton.$on('click',spy)
     let vBtn = vButton.$el;
-    vBtn.click()
+    vBtn.click();
+    expect(spy).have.been.to.called();
 }
