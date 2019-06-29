@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/candice1027/lv-ui/issues"
   },
-  "homepage": "https://github.com/candice1027/lv-ui#readme"
+  "homepage": "https://github.com/candice1027/lv-ui#readme",
+  "dependencies": {
+    "vue": "^2.6.10"
+  }
 }
