@@ -1,6 +1,6 @@
 {
-  "name": "lv-ui",
-  "version": "1.0.0",
+  "name": "lv-ui-test",
+  "version": "0.0.1",
   "description": "  ui 库",
   "main": "index.js",
   "scripts": {
