@@ -24,13 +24,13 @@ export default {
     }
 }
 ```
-4. 引入svg symbols
+<!-- 4. 引入svg symbols
 ```
     <script src="//at.alicdn.com/t/font_908754_7tffe7l2ypv.js"></script>
 
 
 
-```
+``` -->
 
 ## 文档
 ## 变更记录
