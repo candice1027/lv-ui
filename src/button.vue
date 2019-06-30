@@ -8,6 +8,7 @@
     </button>
 </template>
 <script>
+import gIcon from './icon.vue'
 export default {
     props: {
         loading: {
@@ -24,13 +25,14 @@ export default {
             }
         }
     },
+    components:{
+        gIcon
+    },
     methods:{
         showLoading() {
             this.$emit('click')
         }
     },
-    components: {
-    } 
 }
 </script>
 <style lang="scss" scoped>
