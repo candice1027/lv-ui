@@ -23,37 +23,50 @@
             fill: currentColor;
             overflow: hidden;
         }
+        .box {
+            margin: 20px;
+        }
     </style>
 </head>
 <body>
     <div id="app">
-        <g-button-group>
-            <g-button icon="left"  >
-                上一页
+        <div class="box">
+            <g-input value="张三"></g-input>
+            <g-input value="李四" disabled></g-input>
+            <g-input value="王五" readonly></g-input>
+        </div>
+        <div class="box">
+            <g-input value="出错" error="姓名不能为空"></g-input>
+        </div>
+        
+        <div style="margin: 20px;">
+            <g-button-group>
+                <g-button icon="left"  >
+                    上一页
+                </g-button>
+                <g-button>
+                    更多
+                </g-button>
+                <g-button icon="right" icon-locate="right">
+                    下一页
+                </g-button>
+            </g-button-group>
+            <g-button icon="setting" :loading="loading1" @click="loading1=!loading1">
+                按钮1
             </g-button>
-            <g-button>
-                   更多
-            </g-button>
-            <g-button icon="right" icon-locate="right">
-                下一页
-            </g-button>
-        </g-button-group>
-        <g-button icon="setting" :loading="loading1" @click="loading1=!loading1">
-            按钮1
-        </g-button>
-        <g-button icon="setting" icon-locate="right">
-            按钮
-        </g-button>
-        <g-button icon="setting" icon-locate="left">
-            按钮
-        </g-button>
-        <g-button icon="setting" :loading="true" icon-locate="left">
+            <g-button icon="setting" icon-locate="right">
                 按钮
-        </g-button>
-        <g-button icon="setting" :loading="true" icon-locate="right">
+            </g-button>
+            <g-button icon="setting" icon-locate="left">
                 按钮
-        </g-button>
-
+            </g-button>
+            <g-button icon="setting" :loading="true" icon-locate="left">
+                    按钮
+            </g-button>
+            <g-button icon="setting" :loading="true" icon-locate="right">
+                    按钮
+            </g-button>
+       </div>
         <div id="test"></div>
     </div>
     <script src="./src/app.js"></script>
