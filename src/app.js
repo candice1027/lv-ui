@@ -11,7 +11,8 @@ Vue.component('g-button-group',ButtonGroup)
 new Vue({
     el: '#app',
     data:{
-        loading1: false
+        loading1: false,
+        message:'',
     },
     methods: {
         inputchange(e) {
