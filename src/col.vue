@@ -47,7 +47,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .col {
-    width: 50%;
+    // width: 50%;
     height: 50px;
     $class-prefix: col-;
     $offset-prefix: offset-;
