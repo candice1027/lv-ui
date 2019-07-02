@@ -1,11 +1,11 @@
 <template>
     <div class="col" 
-    :class="[`col-${span}`,offset&&`offset-${offset}`]"
-    :style="{paddingLeft: gutter/2+'px',paddingRight: gutter/2+'px'}"
+    :class="colClass"
+    :style="colStyle"
     >
-        <div style="border: 1px solid green;">
+        <!-- <div style="border: 1px solid green;"> -->
             <slot></slot>
-        </div>
+        <!-- </div> -->
     </div>
 </template>
 <script>
@@ -20,6 +20,22 @@ export default {
         gutter: {
             type: [Number,String]
         }
+    },
+    computed: {
+        colClass() {
+            let {span,offset} = this
+            return [
+                `col-${span}`,
+                offset&&`offset-${offset}`
+            ]
+        },
+        colStyle(){
+            return {
+                paddingLeft: this.gutter/2+'px',
+                paddingRight: this.gutter/2+'px'
+            }
+        }
+
     },
     data() {
         return {
