@@ -27,9 +27,9 @@ export default {
         offset:{
             type: [Number,String]
         },
-        gutter: {
-            type: [Number,String]
-        },
+        // gutter: {
+        //     type: [Number,String]
+        // },
         phone: {
             type: Object,
             validator
@@ -48,7 +48,7 @@ export default {
             type: Object,
             validator
         },
-        narrowPc: {
+        narrow: {
             type: Object,
             validator
         },
@@ -56,22 +56,23 @@ export default {
             type: Object,
             validator
         },
-        widePc: {
+        wide: {
             type: Object,
             validator
         },
     },
     computed: {
         colClass() {
-            let {span,offset,phone,ipad,narrowpc,pc,widepc} = this;
+            let {span,offset,phone,ipad,narrow,pc,wide} = this;
+            console.log(narrow)
             return [
                 `col-${span}`,
                 offset&&`offset-${offset}`,
                 ...(phone ? [`col-phone-${phone.span}`] : []),
-                ...(ipad ? [`col-phone-${ipad.span}`] : []),
-                ...(narrowpc ? [`col-phone-${narrowpc.span}`]: []),
-                ...(pc ? [`col-phone-${pc.span}`] : []),
-                ...(widepc ? [`col-phone-${widepc.span}`] : []),
+                ...(ipad ? [`col-ipad-${ipad.span}`] : []),
+                ...(narrow ? [`col-narrow-pc-${narrow.span}`]: []),
+                ...(pc ? [`col-pc-${pc.span}`] : []),
+                ...(wide ? [`col-wide-pc-${wide.span}`] : []),
             ]
         },
         colStyle(){
@@ -104,19 +105,7 @@ export default {
             margin-left: ($n / 24) * 100%
         }
     }
-    @media (max-width: 576px) {
-        $class-prefix: col-phone-;
-        $offset-prefix: offset-phone-;
-        @for $n from 1 through 24 {
-            &.#{$class-prefix}#{$n} {
-                width: ($n / 24) * 100%
-            }
-            &.#{$offset-prefix}#{$n} {
-                margin-left: ($n / 24) * 100%
-            }
-        }
-    }
-    @media (min-width: 576px) and (max-width:768px) {
+    @media (min-width: 577px) {
         $class-prefix: col-ipad-;
         $offset-prefix: offset-ipad-;
         @for $n from 1 through 24 {
@@ -128,7 +117,7 @@ export default {
             }
         }
     }
-    @media (min-width: 769px) and (max-width:992px) {
+    @media (min-width: 769px) {
         $class-prefix: col-narrow-pc-;
         $offset-prefix: offset-narrow-pc-;
         @for $n from 1 through 24 {
@@ -140,7 +129,7 @@ export default {
             }
         }
     }
-    @media (min-width: 993px) and (max-width:1200px) {
+    @media (min-width: 993px) {
         $class-prefix: col-pc-;
         $offset-prefix: offset-pc-;
         @for $n from 1 through 24 {
@@ -151,7 +140,7 @@ export default {
                 margin-left: ($n / 24) * 100%
             }
         }
-    }
+    }  
     @media (min-width: 1201px) {
         $class-prefix: col-wide-pc-;
         $offset-prefix: offset-wide-pc-;
@@ -163,7 +152,7 @@ export default {
                 margin-left: ($n / 24) * 100%
             }
         }
-    }
+    }    
 }
 
 
