@@ -23,13 +23,37 @@
             fill: currentColor;
             overflow: hidden;
         }
-        .box {
+        /* .box {
             margin: 20px;
+        } */
+        .demo {
+            /* border: 1px solid blue; */
+            min-height: 100px;
+            padding: 100px;
+        }
+        .sider {
+            background: #666;
+        }
+        .header {
+            background: #999;
+        }
+        .footer {
+            background: #ccc;
         }
     </style>
 </head>
 <body>
     <div id="app">
+        <div class="box">
+            <g-layout style="height:100vh">
+                <g-sider class="sider demo">sider</g-sider>
+                <g-layout>
+                    <g-header class="header demo">header</g-header>
+                    <g-content class="content demo">content</g-content>
+                    <g-footer class="footer demo">footer</g-footer>
+                </g-layout>     
+            </g-layout>
+        </div>
         <div class="box" style="border: 1px solid blue;">
             <g-row gutter="20">
                 <g-col 
@@ -68,19 +92,12 @@
                 <g-col >3</g-col>
             </g-row>
         </div>
-        
         <hr>
         <div class="box">
             <g-input  @change="inputchange" v-model="message"></g-input>
             <p>{{message}}</p>
             <button @click="message+=1">+1</button>
-            <!-- <g-input value="李四" disabled></g-input>
-            <g-input value="王五" readonly></g-input> -->
         </div>
-        <!-- <div class="box">
-            <g-input value="出错" error="姓名不能为空"></g-input>
-        </div> -->
-        
         <div style="margin: 20px;">
             <g-button-group>
                 <g-button icon="left"  >
