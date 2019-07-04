@@ -43,14 +43,14 @@ export default {
         },
     },
     methods: {
-        createClasses(obj,str) {
+        createClasses(obj,str='') {
             if (!obj) {return []}
             let array = [];
             if (obj.span) {
-                array.push(`col-${str}-${obj.span}`)
+                array.push(`col-${str}${obj.span}`)
             }
             if (obj.offset) {
-                array.push(`offset-${str}-${obj.offset}`)
+                array.push(`offset-${str}${obj.offset}`)
             }
             return array;
         }
@@ -61,11 +61,11 @@ export default {
             console.log(narrow)
             let createClasses = this.createClasses;
             return [
-                ...createClasses(span,offset),
-                ...createClasses(ipad,'ipad'),
-                ...createClasses(narrow,'narrow'),
-                ...createClasses(pc,'pc'),
-                ...createClasses(wide,'wide')
+                ...createClasses({span,offset}),
+                ...createClasses(ipad,'ipad-'),
+                ...createClasses(narrow,'narrow-'),
+                ...createClasses(pc,'pc-'),
+                ...createClasses(wide,'wide-')
             ]
         },
         colStyle(){
