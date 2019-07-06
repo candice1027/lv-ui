@@ -35,11 +35,19 @@ new Vue({
     },
     methods: {
         showToast() {
-            this.$toast('这里是toast')
+            this.$toast('这完',{
+                autoClose: false,
+                // closeButton:{
+                //     text: '我知道了',
+                //     callBack: (toast) =>{
+                //         toast.toast()
+                //         console.log('用户知道了')
+                //     }
+                // }
+            })
         },
         inputchange(e) {
             console.log(e)
-
         }
     }
 })
