@@ -10,6 +10,11 @@ import Content from './content'
 import Footer from './footer'
 import Header from './header'
 import Sider from './sider'
+import Tabs from './tabs'
+import TabsHead from './tabs-head'
+import TabsBody from './tabs-body'
+import TabsItem from './tabs-item'
+import TabsPane from './tabs-pane'
 import Plugin from './plugin.js'
 
 Vue.component('g-input',Input)
@@ -23,6 +28,11 @@ Vue.component('g-header',Header)
 Vue.component('g-content',Content)
 Vue.component('g-footer',Footer)
 Vue.component('g-sider',Sider)
+Vue.component('g-tabs',Tabs)
+Vue.component('g-tabs-head',TabsHead)
+Vue.component('g-tabs-body',TabsBody)
+Vue.component('g-tabs-item',TabsItem)
+Vue.component('g-tabs-pane',TabsPane)
 Vue.use(Plugin)
 new Vue({
     el: '#app',
@@ -36,15 +46,15 @@ new Vue({
     methods: {
         showToast() {
             this.$toast('这完',{
-                autoClose: false,
-                toastPosition: 'top'
-                // closeButton:{
-                //     text: '我知道了',
-                //     callBack: (toast) =>{
-                //         toast.toast()
-                //         console.log('用户知道了')
-                //     }
-                // }
+                autoClose: false,//autoClose直接传false 或者数字
+                // toastPosition: 'top'
+                closeButton:{
+                    text: '我知道了',
+                    callBack: (toast) =>{
+                        toast.toast()
+                        console.log('用户知道了')
+                    }
+                }
             })
         },
         inputchange(e) {

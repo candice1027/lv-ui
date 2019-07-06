@@ -44,90 +44,18 @@
 </head>
 <body>
     <div id="app">
-        <button style="padding:10px;margin-left: 100px;" @click="showToast">toast</button>
-        <!-- <div class="box">
-            <g-layout style="height:100vh">
-                <g-sider class="sider demo">sider</g-sider>
-                <g-layout>
-                    <g-header class="header demo">header</g-header>
-                    <g-content class="content demo">content</g-content>
-                    <g-footer class="footer demo">footer</g-footer>
-                </g-layout>     
-            </g-layout>
-        </div> -->
-        <!-- <div class="box" style="border: 1px solid blue;">
-            <g-row gutter="20">
-                <g-col 
-                    span="1" 
-                    offset="1"
-                    :pc={span:1,offset:2}
-                    
-                >1</g-col>
-                <g-col 
-                    span="22" 
-                    
-                >2</g-col>
-            </g-row>
-            <g-row >
-                <g-col>1</g-col>
-                <g-col>2</g-col>
-                <g-col>3</g-col>
-            </g-row>
-            <g-row>
-                <g-col span="2">1</g-col>
-                <g-col span="20" offset="2">2</g-col>
-            </g-row>
-            <g-row gutter="20">
-                <g-col >1</g-col>
-                <g-col >2</g-col>
-            </g-row>
-            <g-row gutter="20">
-                <g-col >1</g-col>
-                <g-col >2</g-col>
-                <g-col >2</g-col>
-            </g-row>
-            <g-row gutter="20">
-                <g-col >1</g-col>
-                <g-col >2</g-col>
-                <g-col >2</g-col>
-                <g-col >3</g-col>
-            </g-row>
-        </div> -->
-        <!-- <hr> -->
-        <!-- <div class="box">
-            <g-input  @change="inputchange" v-model="message"></g-input>
-            <p>{{message}}</p>
-            <button @click="message+=1">+1</button>
-        </div> -->
-        <!-- <div style="margin: 20px;">
-            <g-button-group>
-                <g-button icon="left"  >
-                    上一页
-                </g-button>
-                <g-button>
-                    更多
-                </g-button>
-                <g-button icon="right" icon-locate="right">
-                    下一页
-                </g-button>
-            </g-button-group>
-            <g-button icon="setting" :loading="loading1" @click="loading1=!loading1">
-                按钮1
-            </g-button>
-            <g-button icon="setting" icon-locate="right">
-                按钮
-            </g-button>
-            <g-button icon="setting" icon-locate="left">
-                按钮
-            </g-button>
-            <g-button icon="setting" :loading="true" icon-locate="left">
-                    按钮
-            </g-button>
-            <g-button icon="setting" :loading="true" icon-locate="right">
-                    按钮
-            </g-button>
-       </div> -->
-        <div id="test"></div>
+        <g-tabs selected="sports">
+            <g-tabs-head>
+                <g-tabs-item name="finance">经济</g-tabs-item>
+                <g-tabs-item name="sports">体育</g-tabs-item>
+                <g-tabs-item name="entertain">娱乐</g-tabs-item>
+            </g-tabs-head>
+            <g-tabs-body>
+                <g-tabs-pane name="finance">经济content</g-tabs-pane>
+                <g-tabs-pane name="sports">体育content</g-tabs-pane>
+                <g-tabs-pane name="entertain">娱乐content</g-tabs-pane>            </g-tabs-body>
+        </g-tabs>
+        
     </div>
     <script src="./src/app.js"></script>
     <script src="//at.alicdn.com/t/font_908754_7tffe7l2ypv.js"></script>

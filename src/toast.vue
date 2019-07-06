@@ -6,7 +6,7 @@
                 <div v-else v-html="$slots.default[0]"></div>
             </div>
             <div class="line" ref="line"></div>
-            <span ref="close" class="close" v-if="!autoClose" @click="onClickClose">{{closeButton.text}}</span>
+            <span class="close" v-if="closeButton" @click="onClickClose">{{closeButton.text}}</span>
         </div>
     </div>
 </template>
@@ -15,12 +15,11 @@ export default {
     name:'toast',
     props: {
         autoClose: {
-            type: Boolean,
-            default: true
-        },
-        autoCloseTime: {
-            type: Number,
-            default: 1
+            type: [Boolean,Number],
+            default: 1,
+            validator(value){
+                return value === false || typeof value === 'number'
+            }
         },
         closeButton: {
             type: Object,
@@ -51,6 +50,7 @@ export default {
         }
     },
     mounted() {
+        console.log(this.closeButton,'mounte之后')
         this.updateStyle() 
         this.execAutoClose()   
     },
@@ -64,7 +64,7 @@ export default {
             if (this.autoClose) {
                 setTimeout(() =>{
                     this.closeToast();
-                },this.autoCloseTime*1000)
+                },this.autoClose*1000)
             }
         },
         closeToast() {
