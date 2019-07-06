@@ -1,11 +1,13 @@
 <template>
-    <div class="toast" ref="wrapper" :class="postionClass">
-        <div class="message">
-            <slot v-if="!enableHtml"></slot>
-            <div v-else v-html="$slots.default[0]"></div>
+    <div class="wrapper" :class="postionClass">
+        <div class="toast" ref="toast" >
+            <div class="message">
+                <slot v-if="!enableHtml"></slot>
+                <div v-else v-html="$slots.default[0]"></div>
+            </div>
+            <div class="line" ref="line"></div>
+            <span ref="close" class="close" v-if="!autoClose" @click="onClickClose">{{closeButton.text}}</span>
         </div>
-        <div class="line" ref="line"></div>
-        <span ref="close" class="close" v-if="!autoClose" @click="onClickClose">{{closeButton.text}}</span>
     </div>
 </template>
 <script>
@@ -55,7 +57,7 @@ export default {
     methods: {
         updateStyle() {
             this.$nextTick(()=>{
-                this.$refs.line.style.height = this.$refs.wrapper.getBoundingClientRect().height+'px';
+                this.$refs.line.style.height = this.$refs.toast.getBoundingClientRect().height+'px';
             })
         },
         execAutoClose() {
@@ -87,22 +89,47 @@ $font-size: 14px;
 $toast-min-height: 40px;
 $toast-bg: rgba(0,0,0,.5);
 $toast-color: #fff;
+$animation-duration: 0.3s;
 @keyframes fade-in {
     0%{opacity: 0;}
     100% {opacity: 1;}
 }
 @keyframes fade-bottom {
-    0%{ transform: translate(-50%,100%)}
-    100% {transform: translate(-50%,0)}
+    0%{ transform: translateY(100%)}
+    100% {transform: translateY(0)}
 }
-.toast {
-    animation: fade-in 1s;
-    min-height: $toast-min-height;
-    font-size: $font-size;
-    line-height: 1.8;
+@keyframes slide-up{
+    0%{ transform: translateY(-100%)}
+    100% {transform: translateY(0)}
+}
+.wrapper {
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
+    &.toast-position {
+        &-bottom {
+            bottom: 0;
+            .toast {
+                 animation: fade-bottom $animation-duration;
+            }
+        }
+        &-top {
+            top: 0;
+            .toast {
+                animation: slide-up $animation-duration;
+            }
+        }
+        &-middle {
+            top: 50%;
+            transform: translateY(-50%)
+        }
+    }
+}
+.toast {
+    animation: fade-in $animation-duration;
+    min-height: $toast-min-height;
+    font-size: $font-size;
+    line-height: 1.8;
     display: flex;
     align-items: center;
     background: $toast-bg;
@@ -114,19 +141,7 @@ $toast-color: #fff;
         padding: 8px 0;
     }
 }
-.toast-position {
-    &-bottom {
-        bottom: 0;
-        animation: fade-bottom 1s;
-    }
-    &-top {
-        top: 0;
-    }
-    &-middle {
-        top: 50%;
-        transform: translateY(-50%)
-    }
-}
+
 .close {
     padding-left: 16px;
     flex-shrink: 0;
