@@ -25,7 +25,8 @@ export default {
     computed: {
         classes() {
             return {
-                isActive: this.active
+                isActive: this.active,
+                Disabled: this.disabled
             }
         }
     },
@@ -36,8 +37,10 @@ export default {
     },
     methods: {
         changeTab() {
-            console.log('触发name的改变',this.name)
-            this.eventBus.$emit('update:selected',this.name,this)
+            if (!this.disabled) {
+                console.log('触发name的改变',this.name)
+                this.eventBus.$emit('update:selected',this.name,this)
+            }  
         }
     }
     
@@ -45,6 +48,7 @@ export default {
 </script>
 <style lang="scss" scoped> 
 $blue: #409eff;
+$disabled-text-color: grey;
 .tabs-item {
     flex-shrink: 0;
     padding: 0 2em;
@@ -55,6 +59,9 @@ $blue: #409eff;
     &.isActive {
         color: $blue;
         font-weight: bold;
+    }
+    &.Disabled {
+        color: $disabled-text-color;
     }
 }
 </style>
