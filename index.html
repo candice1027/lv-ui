@@ -44,9 +44,14 @@
 </head>
 <body>
     <div id="app">
-        <g-tabs selected="sports">
+        <g-tabs :selected.sync="selectedTab" direction="horizontal">
             <g-tabs-head>
-                <g-tabs-item name="finance">经济</g-tabs-item>
+                <template slot="actions">
+                    <button>设置啊</button>
+                </template>
+                <g-tabs-item name="finance" disabled>
+                    <g-icon icon-name="setting"></g-icon>经济
+                </g-tabs-item>
                 <g-tabs-item name="sports">体育</g-tabs-item>
                 <g-tabs-item name="entertain">娱乐</g-tabs-item>
             </g-tabs-head>
@@ -54,8 +59,7 @@
                 <g-tabs-pane name="finance">经济content</g-tabs-pane>
                 <g-tabs-pane name="sports">体育content</g-tabs-pane>
                 <g-tabs-pane name="entertain">娱乐content</g-tabs-pane>            </g-tabs-body>
-        </g-tabs>
-        
+        </g-tabs>     
     </div>
     <script src="./src/app.js"></script>
     <script src="//at.alicdn.com/t/font_908754_7tffe7l2ypv.js"></script>

@@ -5,7 +5,14 @@
 </template>
 <script>
 export default {
-    name:'tabsItem'
+    name:'tabsItem',
+    props: {
+        disabled: {
+            type: Boolean,
+            default: false
+        }
+
+    }
     
 }
 </script>
