@@ -37,13 +37,14 @@ export default {
     methods: {
         changeTab() {
             console.log('触发name的改变',this.name)
-            this.eventBus.$emit('update:selected',this.name)
+            this.eventBus.$emit('update:selected',this.name,this)
         }
     }
     
 }
 </script>
 <style lang="scss" scoped> 
+$blue: #409eff;
 .tabs-item {
     flex-shrink: 0;
     padding: 0 2em;
@@ -52,7 +53,8 @@ export default {
     align-items: center;
     cursor: pointer;
     &.isActive {
-        background-color: red;
+        color: $blue;
+        font-weight: bold;
     }
 }
 </style>
