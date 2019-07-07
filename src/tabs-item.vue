@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs-item" @click="xxx">
+    <div class="tabs-item" @click="changeTab" :class="classes">
         <slot></slot>
     </div>
 </template>
@@ -12,11 +12,6 @@ export default {
         }
     },
     inject: ['eventBus'],
-    created() {
-        this.eventBus.$on('update:selected',(name) =>{
-            console.log('监听Name的改变',name)
-        })
-    },
     props: {
         disabled: {
             type: Boolean,
@@ -27,8 +22,20 @@ export default {
             required: true
         }
     },
+    computed: {
+        classes() {
+            return {
+                isActive: this.active
+            }
+        }
+    },
+    created() {
+        this.eventBus.$on('update:selected',(name) =>{
+            this.active = name === this.name
+        })
+    },
     methods: {
-        xxx() {
+        changeTab() {
             console.log('触发name的改变',this.name)
             this.eventBus.$emit('update:selected',this.name)
         }
@@ -40,6 +47,9 @@ export default {
 .tabs-item {
     flex-shrink: 0;
     padding: 0 2em;
+    &.isActive {
+        background-color: red;
+    }
 }
 </style>
 
