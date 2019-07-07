@@ -5,7 +5,11 @@
 </template>
 <script>
 export default {
-    name:'tabsBody'
+    name:'tabsBody',
+    inject: ['eventBus'],
+    created() {
+        console.log('给body eventBus',this.eventBus)
+    }
     
 }
 </script>

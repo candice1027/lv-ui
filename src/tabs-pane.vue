@@ -5,7 +5,18 @@
 </template>
 <script>
 export default {
-    name:'tabsPane'
+    name:'tabsPane',
+    data() {
+        return {
+            active: false
+        }
+    },
+    inject: ['eventBus'],
+     created() {
+        this.eventBus.$on('update:selected',(name) =>{
+            console.log('监听Name的改变',name)
+        })
+    },
     
 }
 </script>
