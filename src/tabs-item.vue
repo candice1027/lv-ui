@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs-item" @click="changeTab" :class="classes">
+    <div class="tabs-item" @click="changeTab" :class="classes" :data-name="name">
         <slot></slot>
     </div>
 </template>
@@ -31,15 +31,18 @@ export default {
         }
     },
     created() {
-        this.eventBus.$on('update:selected',(name) =>{
-            this.active = name === this.name
-        })
+        if (this.eventBus) {
+            this.eventBus.$on('update:selected',(name) =>{
+                this.active = name === this.name
+            })
+        } 
     },
     methods: {
         changeTab() {
             if (!this.disabled) {
-                console.log('触发name的改变',this.name)
-                this.eventBus.$emit('update:selected',this.name,this)
+                // console.log('触发name的改变',this.name)
+                this.eventBus && this.eventBus.$emit('update:selected',this.name,this)
+                this.$emit('click',this)
             }  
         }
     }
@@ -62,6 +65,7 @@ $disabled-text-color: grey;
     }
     &.Disabled {
         color: $disabled-text-color;
+        cursor: not-allowed;
     }
 }
 </style>

@@ -34,6 +34,9 @@ export default {
         // this.$emit('update:selected','xxx')
     },
     mounted() {
+        if (this.$children.length === 0) {
+           console && console.warn && console.warn('tabs的子组件应该是tabs-head 和 tabs-body,但是您没有传入子组件')
+        }
         this.$children.forEach((vm) => {
             if (vm.$options.name == 'tabsHead') {
                 vm.$children.forEach(childVm => {

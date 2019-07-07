@@ -50,7 +50,7 @@ export default {
         }
     },
     mounted() {
-        console.log(this.closeButton,'mounte之后')
+        // console.log(this.closeButton,'mounte之后')
         this.updateStyle() 
         this.execAutoClose()   
     },

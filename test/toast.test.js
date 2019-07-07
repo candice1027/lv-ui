@@ -43,7 +43,7 @@ describe('Row', () => {
                 closeButton.click()
                 expect(callBack).to.have.been.called 
                 done();   
-            })
+            },1000)
         })
         it('接收enableHtml属性', () => {
             const Constructor = Vue.extend(Toast)
