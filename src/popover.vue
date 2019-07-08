@@ -3,7 +3,7 @@
     <div v-if="visible" ref="contentWrapper" class="content-wrapper" >
        <slot name="content"></slot>
     </div>
-    <span ref="triggerWrapper">
+    <span ref="triggerWrapper" style="display:inline-block;">
       <slot></slot>  
     </span>
   </div>
@@ -60,15 +60,42 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+$border-color: #333;
+$border-radius: 5px;
 .popover {
   display: inline-block;
   position: relative;
 }
 .content-wrapper {
   position: absolute;
-  border: 1px solid red;
-  box-shadow: 0 0 3px rgba(0,0,0,.5);
+  border: 1px solid $border-color;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,.5));
+  background: #fff;
+  border-radius: $border-radius;
+  // box-shadow: 0 0 3px rgba(0,0,0,.5);
   transform: translateY(-100%);
+  margin-top: -10px;
+  padding: .5em 1em;
+  max-width: 20em;
+  word-break: break-all;
+  &::before,&::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    border: 10px solid transparent;
+  }
+  &::before {
+    top: 100%;
+    left: 10px;
+    border-top-color: black;
+  }
+  &::after {
+    top: calc(100% - 1px);
+    left: 10px;
+    border-top-color: white;
+  }
 }
   
 </style>
