@@ -43,8 +43,14 @@
     </style>
 </head>
 <body>
-    <div id="app">
-        <g-tabs :selected.sync="selectedTab" direction="horizontal">
+    <div id="app" style="padding-top: 100px;padding-left: 100px;">
+        <g-popover>
+            <template slot="content">
+                <div>这里是content内容</div>
+            </template>
+            <button>点我</button>
+        </g-popover>
+        <!-- <g-tabs :selected.sync="selectedTab" direction="horizontal">
             <g-tabs-head>
                 <template slot="actions">
                     <span>设置啊</span>
@@ -59,7 +65,7 @@
                 <g-tabs-pane name="finance">经济content</g-tabs-pane>
                 <g-tabs-pane name="sports">体育content</g-tabs-pane>
                 <g-tabs-pane name="entertain">娱乐content</g-tabs-pane>            </g-tabs-body>
-        </g-tabs>     
+        </g-tabs>      -->
     </div>
     <script src="./src/app.js"></script>
     <script src="//at.alicdn.com/t/font_908754_7tffe7l2ypv.js"></script>
