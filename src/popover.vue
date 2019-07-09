@@ -35,7 +35,7 @@ export default {
       validator: (value) =>{
         return ['click','hover'].indexOf(value) >= 0
       }
-    }
+    },
   },
   computed:{
     openEvent(){
@@ -73,10 +73,10 @@ export default {
         this.showContent(e);
       })
     } else if (this.trigger === 'hover') {
-      this.$refs.popover.addEventListener('mouseenter', (e)=>{
+      this.$refs.popover.removeEventListener('mouseenter', (e)=>{
         this.popoverShow();
       })
-      this.$refs.popover.addEventListener('mouseout', (e)=>{
+      this.$refs.popover.removeEventListener('mouseout', (e)=>{
         this.popoverClose();
       })
     }
@@ -121,7 +121,6 @@ export default {
       contentWrapper.style.top = positionData[this.contentPosition].top;  
     },
     popoverShow(){
-      console.log('show')
       this.visible = true;
       this.$nextTick(()=>{
         this.positionContent();
@@ -176,6 +175,7 @@ $border-radius: 5px;
     margin-top: -10px;
     &::before ,&::after{
       left: 10px;
+      border-bottom: none;
     }
     &::before {
       top: 100%;
@@ -190,6 +190,7 @@ $border-radius: 5px;
     margin-top: 10px;
     &::before ,&::after{
       left: 10px;
+      border-top: none;
     }
     &::before {
       bottom: 100%;
@@ -207,6 +208,7 @@ $border-radius: 5px;
       left: 100%;
       top: 50%;
       transform: translateY(-50%);
+      border-right: none;
     }
     &::before {
       border-left-color: black;
@@ -221,6 +223,7 @@ $border-radius: 5px;
     &::before ,&::after{
       top: 50%;
       transform: translateY(-50%);
+      border-left: none;
     }
     &::before {
       right: 100%;
