@@ -6,7 +6,7 @@
       class="content-wrapper"
       :class="{[`position-${contentPosition}`]: true}"
     >
-      <slot name="content"></slot>
+      <slot name="content" :close="popoverClose" ></slot>
     </div>
     <span ref="triggerWrapper" style="display:inline-block;">
       <slot></slot>  

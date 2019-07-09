@@ -46,10 +46,10 @@
     <div id="app" style="padding-top: 100px;padding-left: 100px;">
         <div style="padding-top: 50px;padding-bottom: 40px;">
             <g-popover content-position="top">
-            <template slot="content" >
-                <div>contentcontentcontentcontententcontent</div>
-                <g-button>这里是按钮</g-button>
-            </template>
+                <template slot="content" slot-scope="xxx">
+                    <div>contentcontentcontentcontententcontent</div>
+                    <g-button @click="xxx.close">这里是关闭</g-button>
+                </template>
             <g-button>点我上</g-button>
             </g-popover>
             <g-popover content-position="bottom">
