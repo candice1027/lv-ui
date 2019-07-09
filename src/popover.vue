@@ -1,5 +1,5 @@
 <template>
-  <div class="popover"  @click="showContent" ref="popover">
+  <div class="popover"  ref="popover">
     <div 
       v-if="visible" 
       ref="contentWrapper" 
@@ -28,6 +28,57 @@ export default {
       validator:(value)=>{
         return ['top','bottom','left','right'].indexOf(value) >= 0
       }
+    },
+    trigger: {
+      type: String,
+      default: 'click',
+      validator: (value) =>{
+        return ['click','hover'].indexOf(value) >= 0
+      }
+    }
+  },
+  computed:{
+    openEvent(){
+      if (this.trigger === 'click') {
+        return 'click'
+      } else {
+        return 'mouseenter'
+      }
+    },
+    closeEvent() {
+      if (this.trigger ==='click') {
+        return 'click'
+      } else {
+        return 'mouseout'
+      }
+    }
+  },
+  mounted(){
+    if (this.trigger === 'click') {
+      this.$refs.popover.addEventListener('click', (e)=>{
+        this.showContent(e);
+      })
+    } else if (this.trigger === 'hover') {
+      this.$refs.popover.addEventListener('mouseenter', (e)=>{
+        this.popoverShow();
+      })
+      this.$refs.popover.addEventListener('mouseout', (e)=>{
+        this.popoverClose();
+      })
+    }
+  },
+  destroyed() {
+    if (this.trigger === 'click') {
+      this.$refs.popover.removeEventListener('click', (e)=>{
+        this.showContent(e);
+      })
+    } else if (this.trigger === 'hover') {
+      this.$refs.popover.addEventListener('mouseenter', (e)=>{
+        this.popoverShow();
+      })
+      this.$refs.popover.addEventListener('mouseout', (e)=>{
+        this.popoverClose();
+      })
     }
   },
   methods: {
@@ -70,6 +121,7 @@ export default {
       contentWrapper.style.top = positionData[this.contentPosition].top;  
     },
     popoverShow(){
+      console.log('show')
       this.visible = true;
       this.$nextTick(()=>{
         this.positionContent();
