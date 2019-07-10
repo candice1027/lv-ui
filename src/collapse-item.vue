@@ -40,9 +40,10 @@ export default {
     methods:{
         toggle() {
             if (this.isOpen) {
-              this.closeItem();   
+              this.closeItem();  
+               this.eventBus && this.eventBus.$emit('update:removeSelected',this.name) 
             } else {
-                this.eventBus && this.eventBus.$emit('update:selected',this.name)
+              this.eventBus && this.eventBus.$emit('update:addSelected',this.name)
             }
         },
         showItem() {

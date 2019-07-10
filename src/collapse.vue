@@ -13,12 +13,13 @@ export default {
             default: false
         },
         selected: {
-            type: String
+            type: Array
         }
     },
     data(){
         return {
-            eventBus: new Vue()
+            eventBus: new Vue(),
+            selectedArray:[]
         }
     },
     provide() {
@@ -31,8 +32,14 @@ export default {
         if (this.selected) {
             this.eventBus && this.eventBus.$emit('update:selected',this.selected)
         } 
-        this.eventBus && this.eventBus.$on('update:selected',(vm) => {
-            this.$emit('update:select',vm)
+        this.eventBus && this.eventBus.$on('update:addSelected',(vm) => {
+            this.selectedArray.push(vm)
+            this.$emit('update:selected', this.selectedArray)
+        })
+        this.eventBus && this.eventBus.$on('update:removeSelected',(vm) => {
+            let index = this.selectedArray.indexOf(vm)
+                this.selectedArray.splice(index,1)
+            this.$emit('update:selected', this.selectedArray)
         })
         this.$children.forEach(vm =>{
             vm.single = this.single
