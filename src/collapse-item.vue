@@ -15,14 +15,15 @@ export default {
         title: {
             type: String,
             required: true
+        },
+        name: {
+            type: String
         }
     },
     inject:['eventBus'],
     mounted(){
-        this.eventBus && this.eventBus.$on('update:selected',(item)=>{
-            if (item !== this) {
-               this.isOpen = false; 
-            }
+        this.eventBus && this.eventBus.$on('update:selected',(vm)=>{
+            vm !== this.name ? this.closeItem() : this.showItem()
         })
     },
     data() {
@@ -32,10 +33,17 @@ export default {
     },
     methods:{
         selectItem() {
-            this.isOpen = !this.isOpen;
             if (this.isOpen) {
-                this.eventBus && this.eventBus.$emit('update:selected',this)
-            }  
+              this.closeItem();   
+            } else {
+                this.eventBus && this.eventBus.$emit('update:selected',this.name)
+            }
+        },
+        showItem() {
+            this.isOpen = true;
+        },
+        closeItem(){
+            this.isOpen = false;
         }
     }    
 }
