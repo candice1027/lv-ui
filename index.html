@@ -45,7 +45,7 @@
 <body>
     <div id="app" style="padding-top: 100px;padding-left: 100px;">
         <div style="padding: 100px;">
-            <g-collapse single selected="2">
+            <g-collapse  single :selected.sync="selectItem">
                 <g-collapse-item title="标题1" name="1">
                     这里是手风琴1
                 </g-collapse-item>
@@ -53,6 +53,7 @@
                     这里是手风琴2
                 </g-collapse-item>
             </g-collapse>
+            {{selectItem}}
         </div>
         <div style="padding-top: 50px;padding-bottom: 40px;">
             <g-popover content-position="top">

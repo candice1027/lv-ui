@@ -46,6 +46,7 @@ new Vue({
         selectedTab: 'entertain',
         loading1: false,
         message:'',
+        selectItem: '2'
     },
     created() {
         // this.$toast();

@@ -1,7 +1,7 @@
 
 <template>
 <div class="collapse-item">
-    <div class="title" @click="selectItem" >{{title}}</div>
+    <div class="title" @click="toggle" >{{title}}</div>
     <div class="content" v-show="isOpen">
         <slot></slot>
     </div> 
@@ -22,8 +22,14 @@ export default {
     },
     inject:['eventBus'],
     mounted(){
-        this.eventBus && this.eventBus.$on('update:selected',(vm)=>{
-            vm !== this.name ? this.closeItem() : this.showItem()
+        this.eventBus && this.eventBus.$on('update:selected',(vm)=> {
+            if (vm !== this.name) {
+                if (this.single) {
+                    this.closeItem()
+                }   
+            } else {
+                this.showItem()
+            }
         })
     },
     data() {
@@ -32,7 +38,7 @@ export default {
         }
     },
     methods:{
-        selectItem() {
+        toggle() {
             if (this.isOpen) {
               this.closeItem();   
             } else {

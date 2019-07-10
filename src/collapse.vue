@@ -22,16 +22,21 @@ export default {
         }
     },
     provide() {
-        if (this.single) {
-            return {
-                eventBus: this.eventBus
-            }
+        return {
+            eventBus: this.eventBus
         }
+        
     },
     mounted(){
         if (this.selected) {
-            this.eventBus.$emit('update:selected',this.selected)
+            this.eventBus && this.eventBus.$emit('update:selected',this.selected)
         } 
+        this.eventBus && this.eventBus.$on('update:selected',(vm) => {
+            this.$emit('update:select',vm)
+        })
+        this.$children.forEach(vm =>{
+            vm.single = this.single
+        })
     }
 }
 </script>
