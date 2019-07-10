@@ -12,7 +12,6 @@ describe('Popover', () => {
     })
     it('接收contentPosition属性', (done) => {
         Vue.component('g-popover',Popover)
-        // Vue.component('g-button',Button)
         const div = document.createElement('div');
         document.body.appendChild(div);
         div.innerHTML = `
@@ -34,19 +33,29 @@ describe('Popover', () => {
         })
       
     })
-    // it('可以设置loading.', () => {
-    //     const Constructor = Vue.extend(Button)
-    //     const vm = new Constructor({
-    //     propsData: {
-    //         icon: 'settings',
-    //         loading: true
-    //     }
-    //     }).$mount()
-    //     const useElements = vm.$el.querySelectorAll('use')
-    //     expect(useElements.length).to.equal(1)
-    //     expect(useElements[0].getAttribute('xlink:href')).to.equal('#i-loading')
-    //     vm.$destroy()
-    // })
+    xit('可以设置trigger事件', (done) => { 
+        Vue.component('g-popover',Popover)
+        const div = document.createElement('div');
+        document.body.appendChild(div);
+        div.innerHTML = `
+            <g-popover content-position="bottom" ref="a" trigger="hover">
+                <template slot="content" slot-scope="xxx">
+                   弹出内容
+                </template>
+            <button>点我上</button>
+            </g-popover>
+        `
+        const vm = new Vue({
+            el: div
+        })
+        let event = new Event('mouseenter');
+        vm.$el.dispatchEvent(event);
+        vm.$nextTick(() =>{
+            let { contentWrapper } = vm.$refs.a.$refs;
+            expect(contentWrapper).to.be.exist
+            done();
+        })
+    })
     // it('icon 默认的 order 是 1', () => {
     //     const div = document.createElement('div')
     //     document.body.appendChild(div)
