@@ -28,22 +28,13 @@ export default {
     inject:['eventBus'],
     mounted(){
         this.eventBus && this.eventBus.$on('update:selected',(vm)=> {
-            if (vm.indexOf(this.name) == -1) {
-                this.isOpen = false;  
-            } else {
-                this.isOpen = true;
-            }
+            this.isOpen = vm.indexOf(this.name) == -1 ? false : true 
         })
     },
     methods:{
         toggle() {
-            if (this.isOpen) {
-               this.isOpen = false; 
-               this.eventBus && this.eventBus.$emit('update:removeSelected',this.name) 
-            } else {
-               this.isOpen = true;
-              this.eventBus && this.eventBus.$emit('update:addSelected',this.name)
-            }
+            let updataName = this.isOpen ? 'update:removeSelected' : 'update:addSelected'
+            this.eventBus && this.eventBus.$emit(updataName,this.name)
         },
     }    
 }
