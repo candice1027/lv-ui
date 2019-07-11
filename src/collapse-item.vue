@@ -20,38 +20,31 @@ export default {
             type: String
         }
     },
-    inject:['eventBus'],
-    mounted(){
-        this.eventBus && this.eventBus.$on('update:selected',(vm)=> {
-            if (vm !== this.name) {
-                if (this.single) {
-                    this.closeItem()
-                }   
-            } else {
-                this.showItem()
-            }
-        })
-    },
     data() {
         return {
             isOpen: false
         }
     },
+    inject:['eventBus'],
+    mounted(){
+        this.eventBus && this.eventBus.$on('update:selected',(vm)=> {
+            if (vm.indexOf(this.name) == -1) {
+                this.isOpen = false;  
+            } else {
+                this.isOpen = true;
+            }
+        })
+    },
     methods:{
         toggle() {
             if (this.isOpen) {
-              this.closeItem();  
+               this.isOpen = false; 
                this.eventBus && this.eventBus.$emit('update:removeSelected',this.name) 
             } else {
+               this.isOpen = true;
               this.eventBus && this.eventBus.$emit('update:addSelected',this.name)
             }
         },
-        showItem() {
-            this.isOpen = true;
-        },
-        closeItem(){
-            this.isOpen = false;
-        }
     }    
 }
 </script>

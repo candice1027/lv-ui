@@ -19,7 +19,7 @@ export default {
     data(){
         return {
             eventBus: new Vue(),
-            selectedArray:[]
+            selectedArray: this.selected
         }
     },
     provide() {
@@ -29,21 +29,33 @@ export default {
         
     },
     mounted(){
-        if (this.selected) {
-            this.eventBus && this.eventBus.$emit('update:selected',this.selected)
-        } 
         this.eventBus && this.eventBus.$on('update:addSelected',(vm) => {
-            this.selectedArray.push(vm)
+            if (this.single) {
+                this.selectedArray = [vm]
+            } else {
+                this.selectedArray.push(vm)
+            }
+          
             this.$emit('update:selected', this.selectedArray)
+            this.changeSelected()
         })
         this.eventBus && this.eventBus.$on('update:removeSelected',(vm) => {
-            let index = this.selectedArray.indexOf(vm)
+             if (this.single) {
+                this.selectedArray = []
+            } else {
+                let index = this.selectedArray.indexOf(vm)
                 this.selectedArray.splice(index,1)
+            }
+            
             this.$emit('update:selected', this.selectedArray)
+            this.changeSelected()
         })
-        this.$children.forEach(vm =>{
-            vm.single = this.single
-        })
+        this.changeSelected()
+    },
+    methods: {
+        changeSelected() {
+            this.eventBus && this.eventBus.$emit('update:selected',this.selectedArray)
+        }
     }
 }
 </script>
