@@ -18,6 +18,7 @@ import TabsPane from './tabs-pane'
 import Popover from './popover'
 import Collapse from './collapse'
 import CollapseItem from './collapse-item'
+import Cascader from './cascader'
 import Plugin from './plugin.js'
 
 Vue.component('g-input',Input)
@@ -39,6 +40,8 @@ Vue.component('g-tabs-pane',TabsPane)
 Vue.component('g-popover',Popover)
 Vue.component('g-collapse',Collapse)
 Vue.component('g-collapse-item',CollapseItem)
+Vue.component('g-cascader',Cascader)
+
 Vue.use(Plugin)
 new Vue({
     el: '#app',
@@ -46,7 +49,61 @@ new Vue({
         selectedTab: 'entertain',
         loading1: false,
         message:'',
-        selectItem: ['1']
+        selectItem: ['1'],
+        source:[
+            {
+                name:'浙江',
+                children:[
+                    {
+                     name: '杭州',
+                      children: [
+                        {
+                            name:'上城区'
+                        },
+                        {
+                            name:'下城区'
+                        },
+                        {
+                            name:'江干区'
+                        },
+                    ]
+                    },
+                    {
+                        name: '嘉兴',
+                        children: [
+                            {
+                                name:'南湖区'
+                            },
+                            {
+                                name:'秀洲区'
+                            },
+                            {
+                                name:'嘉善县'
+                            },
+                        ]
+                    }
+                ]
+            },
+            {
+                name:'福建',
+                children:[
+                    {
+                     name: '福州',
+                      children: [
+                        {
+                            name:'鼓楼区'
+                        },
+                        {
+                            name:'台江区'
+                        },
+                        {
+                            name:'苍山区'
+                        },
+                    ]
+                    },
+                ]
+            }
+        ]
     },
     created() {
         // this.$toast();

@@ -44,6 +44,11 @@
 </head>
 <body>
     <div id="app" style="padding-top: 100px;padding-left: 100px;">
+        <div style="padding: 100px">
+            <g-cascader :source="source">
+                这里是级联选择器
+            </g-cascader>
+        </div>
         <div style="padding: 100px;">
             <g-collapse  :selected.sync="selectItem">
                 <g-collapse-item title="标题1" name="1">
