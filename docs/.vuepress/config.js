@@ -1,5 +1,6 @@
 module.exports = {
-  title: 'Hello VuePress',
+  base: '/lv-ui/',
+  title: 'UI 框架',
   description: 'Just playing around',
   themeConfig: {
     sidebar: [
