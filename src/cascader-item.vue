@@ -1,21 +1,37 @@
 <template>
     <div class="cascaderItem">
-        {{sourceItem.name}}
-            <cascader-item  
-                v-if="sourceItem.children"
-                v-for=" (item,index) in sourceItem.children"
-                :key="index"
-                :sourceItem = item
-            ></cascader-item> 
-          
+       <div class="left-container" v-for="(item,index) in source" :key="index" @click="leftChildrenData = item.children">
+           {{item.name}}
+       </div>
+       <div class="right-container" v-if="rightData" >
+          <cascader-item :source="rightData"></cascader-item>
+       </div>   
     </div>
 </template>
 <script>
 export default {
     name:'cascaderItem',
     props:{
-        sourceItem:{
-            type: Object
+        source:{
+            type: Array
+        }
+    },
+    mounted(){
+        console.log(this.source,'source====')
+    },
+    data(){
+        return {
+            leftChildrenData: null
+        }
+    },
+    computed:{
+        rightData(){
+            if (this.leftChildrenData) {
+                return this.leftChildrenData
+
+            } else {
+                return null
+            }
         }
     }
 }

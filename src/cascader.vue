@@ -4,10 +4,7 @@
              <slot></slot>
         </div>
         <div class="popover">
-            <div v-for="(item,index) in source" :key="index">
-                <cascader-item :sourceItem="item"></cascader-item>
-            </div>
-            
+            <cascader-item :source="source"></cascader-item>
         </div>    
     </div>
 </template>
