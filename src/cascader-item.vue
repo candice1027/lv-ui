@@ -1,7 +1,7 @@
 <template>
     <div class="cascaderItem">
-       <div class="left-container" v-for="(item,index) in source" :key="index" @click="leftChildrenData = item.children">
-           {{item.name}}
+       <div class="left-container" v-if="source">
+          <div v-for="(item,index) in source" :key="index" @click="leftChildrenData = item.children"> {{item.name}}</div>
        </div>
        <div class="right-container" v-if="rightData" >
           <cascader-item :source="rightData"></cascader-item>
@@ -37,7 +37,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
+.cascaderItem {
+    display: flex;
+}
+.left-container {
+    border: 1px solid red;
+}
 </style>
 
 

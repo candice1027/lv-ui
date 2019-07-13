@@ -1,9 +1,9 @@
 <template>
     <div class="cascader">
-        <div class="trigger">
+        <div class="trigger" @click="popoverVisible = !popoverVisible">
              <slot></slot>
         </div>
-        <div class="popover">
+        <div class="popover" v-show="popoverVisible">
             <cascader-item :source="source"></cascader-item>
         </div>    
     </div>
@@ -15,6 +15,11 @@ export default {
     props: {
         source: {
             type: Array
+        }
+    },
+    data(){
+        return {
+            popoverVisible: false
         }
     },
     mounted() {
