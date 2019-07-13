@@ -6,3 +6,7 @@ $border-radius: 4px;
 $color: #333;
 $border-color: #999;
 $border-color-hover: #666;
+$border-color-light: lighten($border-color, 20%);
+.box-shadow {
+    box-shadow: 0 0 0 2px rgba(0,0,0,.05)
+}
