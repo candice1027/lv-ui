@@ -8,6 +8,8 @@
                 :source="source" 
                 :itemHeight="popoverHeight"
                 class="popover"
+                :cascaderSelected="cascaderSelected"
+                :level="level"
             ></cascader-item>
         </div>    
     </div>
@@ -22,6 +24,16 @@ export default {
         },
         popoverHeight: {
             type: String
+        },
+        cascaderSelected: {
+            type: Array,
+            default: ()=>{
+                return []
+            }
+        },
+        level: {
+            type: Number,
+            default: 0
         }
        
     },

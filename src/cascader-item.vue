@@ -1,18 +1,26 @@
 <template>
     <div class="cascaderItem" :style="{height: itemHeight}">
+        <div>
+            selected: {{cascaderSelected && cascaderSelected[level] && cascaderSelected[level].name}}
+            level: {{level}}
+        </div>
        <div class="left-container" v-if="source" :style="{height: itemHeight}">
           <div class="label" 
             v-for="(item,index) in source" 
             :key="index" 
-            @click="leftChildrenData = item"
+            @click="changeData(item)"
         > 
             {{item.name}}
             <Icon v-if="item.children" icon-name="right"></Icon>
-        </div>
-        
+        </div> 
        </div>
        <div class="right-container" v-if="rightData" >
-          <cascader-item :source="rightData" :itemHeight="itemHeight"></cascader-item>
+          <cascader-item 
+            :source="rightData" 
+            :itemHeight="itemHeight"
+            :level="level+1"
+            @update:cascaderSelected="onUpdateSelected"
+          ></cascader-item>
        </div>   
     </div>
 </template>
@@ -26,6 +34,16 @@ export default {
         },
         itemHeight: {
             type: String
+        },
+        cascaderSelected: {
+            type: Array,
+            default: ()=>{
+                return []
+            }
+        },
+        level: {
+            type: Number,
+            default: 0
         }
     },
     components:{
@@ -41,12 +59,23 @@ export default {
     },
     computed:{
         rightData(){
-            if (this.leftChildrenData && this.leftChildrenData.children) {
-                return this.leftChildrenData.children
-
+            let currentSelected = this.cascaderSelected[this.level];
+            if (currentSelected && currentSelected.children) {
+                return currentSelected.children
             } else {
                 return null
             }
+        }
+    },
+    methods:{
+        changeData(item) {
+            let copy = JSON.parse(JSON.stringify(this.cascaderSelected));
+            copy[this.level] = item
+            this.$emit('updated:cascaderSelected',copy)
+            console.log(copy[this.level])
+        },
+        onUpdateSelected(newSelected) {
+            this.$emit('update:cascaderSelected',newSelected)
         }
     }
 }

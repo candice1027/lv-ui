@@ -2,8 +2,13 @@
 <template>
 <div>
     <Button>按钮</Button>
-    <Cascader :source="source" popover-height="200px">
-                这里是级联选择器
+    <Cascader 
+        :source="source" 
+        popover-height="200px"
+        :cascaderSelected="cascaderSelected"
+        :level="level"
+    >
+        这里是级联选择器
     </Cascader>
 </div>
     
@@ -15,6 +20,8 @@ import Cascader from './cascader'
 export default {
     data(){
         return {
+            level: 0,
+            cascaderSelected:[],
              source:[
             {
                 name:'浙江',
@@ -91,6 +98,11 @@ export default {
 
         }
        
+    },
+    mounted(){
+        this.$on('updated:cascaderSelected',newVal =>{
+            this.cascaderSelected = newVal
+        })
     },
     components:{
         Button,
