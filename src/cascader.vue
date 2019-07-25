@@ -2,7 +2,9 @@
 <div class="cascader">
     <div class="trigger" @click="popoverVisible = ! popoverVisible">
         <!-- 这是触发器 点击之后弹出浮层-->
-        <slot></slot>
+        <slot>
+            {{result || '&nbsp;'}}
+        </slot>
     </div> 
     <div class="popover-wrapper" v-if="popoverVisible">
         <cascader-items 
@@ -48,6 +50,13 @@ export default {
             console.log('newSelected',newSelected)
             this.$emit('update:selected',newSelected)
         }
+    },
+    computed: {
+        result() {
+            if (this.selected) {
+                return this.selected.map(item =>item.name).join('/')
+            }
+        }
     }  
 }
 </script>
@@ -57,9 +66,13 @@ export default {
 .cascader {
     position: relative;
     .trigger {
-        width: 200px;
-        height: 32px;
-        border: 1px solid red;
+        min-width: 10em;
+        height: $button-height;
+        border: 1px solid $border-color;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 1em;
+        border-radius: $border-radius;
     }
     .popover-wrapper {
         display: flex;
@@ -67,6 +80,7 @@ export default {
         top: 100%;
         left: 0;
         background: #fff;
+        margin-top: 8px;
         @extend .box-shadow;
         .label {
             white-space: nowrap;

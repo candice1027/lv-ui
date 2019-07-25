@@ -1,16 +1,16 @@
 
 <template>
 <div>
-    <!-- <Button>按钮</Button> -->
-    <p>{{selected}}</p>
+    <div style="padding:10px;">
     <Cascader 
         :source="source" 
         popover-height="200px"
         :selected="selected"
         @update:selected="onUpdateSelected"
     >
-        这里是级联选择器
+        <!-- 这里是级联选择器 -->
     </Cascader>
+    </div>
 </div>
     
 </template>
