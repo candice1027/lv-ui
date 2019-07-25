@@ -1,12 +1,13 @@
 
 <template>
 <div>
-    <Button>按钮</Button>
+    <!-- <Button>按钮</Button> -->
+    <p>{{selected}}</p>
     <Cascader 
         :source="source" 
         popover-height="200px"
         :selected="selected"
-        :level="level"
+        @update:selected="onUpdateSelected"
     >
         这里是级联选择器
     </Cascader>
@@ -15,12 +16,11 @@
 </template>
 <script>
 import Button from './button'
-import CascaderItem from './cascader-item'
+import CascaderItems from './cascader-items'
 import Cascader from './cascader'
 export default {
     data(){
         return {
-            level: 0,
             selected:[],
             source:[
             {
@@ -95,19 +95,21 @@ export default {
                 ]
             }
         ]
-
-        }
-       
+        }  
     },
     mounted(){
-        this.$on('updated:selected',newVal =>{
-            this.cascaderSelected = newVal
-        })
+    },
+    methods: {
+        onUpdateSelected(newSelected) {
+            console.log('更新了啊',newSelected)
+            this.selected = newSelected
+            console.log(this.selected,'this.selected')
+        }
     },
     components:{
         Button,
         Cascader,
-        CascaderItem
+        CascaderItems
     }
     
 }
