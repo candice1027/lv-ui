@@ -1,83 +1,39 @@
 <template>
-    <div class="cascader">
-        <div class="trigger" @click="popoverVisible = !popoverVisible">
-             <slot></slot>
+<div class="cascder">
+    <div class="trigger">
+        <!-- 这是触发器 点击之后弹出浮层-->
+        <slot></slot>
+    </div> 
+    <div class="popover">
+        <!-- 这里是级联选择器的popover -->
+        <div v-for="(item,index) in source" :key="index">
+            <cascader-item :source-item="item"></cascader-item>
         </div>
-        <div class="popover-wrapper" v-show="popoverVisible">
-            <cascader-item 
-                :source="source" 
-                :itemHeight="popoverHeight"
-                class="popover"
-                :cascaderSelected="cascaderSelected"
-                :level="level"
-            ></cascader-item>
-        </div>    
-    </div>
+    </div> 
+</div>
+    
 </template>
 <script>
 import cascaderItem from './cascader-item'
 export default {
-    name:'cascader',
+    name: "cascader",
     props: {
         source: {
             type: Array
-        },
-        popoverHeight: {
-            type: String
-        },
-        cascaderSelected: {
-            type: Array,
-            default: ()=>{
-                return []
-            }
-        },
-        level: {
-            type: Number,
-            default: 0
-        }
-       
-    },
-    data(){
-        return {
-            popoverVisible: false
         }
     },
-    mounted() {
-        console.log(this.source,'source====')
-    },
-    components:{
+    components: {
         cascaderItem
-    }
+    }   
 }
 </script>
 <style lang="scss" scoped>
 @import "var";
+
 .cascader {
-    position: relative;
-    .trigger {
-        border: 1px solid red;
-        height: 32px;
-        // width: 100px;
-    }
-    .popover-wrapper {
-        position: absolute;
-        top: 100%;
-        background: #fff;
-        // border: 1px solid green;
-        height: 200px;
-        display: flex;
-        @extend .box-shadow;
-        .label {
-            white-space: nowrap;
-        }
 
-    }
-
-}
-
-
+} 
 
 </style>
-
 
 

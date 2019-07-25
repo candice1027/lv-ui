@@ -5,7 +5,7 @@
     <Cascader 
         :source="source" 
         popover-height="200px"
-        :cascaderSelected="cascaderSelected"
+        :selected="selected"
         :level="level"
     >
         这里是级联选择器
@@ -21,8 +21,8 @@ export default {
     data(){
         return {
             level: 0,
-            cascaderSelected:[],
-             source:[
+            selected:[],
+            source:[
             {
                 name:'浙江',
                 children:[
@@ -100,7 +100,7 @@ export default {
        
     },
     mounted(){
-        this.$on('updated:cascaderSelected',newVal =>{
+        this.$on('updated:selected',newVal =>{
             this.cascaderSelected = newVal
         })
     },

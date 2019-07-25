@@ -17,8 +17,8 @@ import TabsItem from './tabs-item'
 import TabsPane from './tabs-pane'
 import Popover from './popover'
 import Collapse from './collapse'
-import CollapseItem from './collapse-item'
-import Cascader from './cascader'
+// import CollapseItem from './collapse-item'
+// import Cascader from './cascader'
 import Plugin from './plugin.js'
 
 Vue.component('g-input',Input)
@@ -39,8 +39,8 @@ Vue.component('g-tabs-item',TabsItem)
 Vue.component('g-tabs-pane',TabsPane)
 Vue.component('g-popover',Popover)
 Vue.component('g-collapse',Collapse)
-Vue.component('g-collapse-item',CollapseItem)
-Vue.component('g-cascader',Cascader)
+// Vue.component('g-collapse-item',CollapseItem)
+// Vue.component('g-cascader',Cascader)
 
 Vue.use(Plugin)
 new Vue({
