@@ -1,5 +1,5 @@
 <template>
-<div class="cascader" ref="cascader">
+<div class="cascader" ref="cascader" v-click-outside="close">
     <div class="trigger" @click="toggle">
         <!-- 这是触发器 点击之后弹出浮层-->
         <slot>
@@ -22,6 +22,7 @@
 </template>
 <script>
 import cascaderItems from './cascader-items'
+import ClickOutside from './click-outside'
 export default {
     name: "cascader",
     data() {
@@ -46,30 +47,18 @@ export default {
             type: Function
         }
     },
+    directives: {
+        ClickOutside
+    },
     components: {
         cascaderItems
     },
     methods: {
-        onClickDocument(e) {
-            //如果点击的元素在cascader组件里面的话，就不管，如果不在的话，就把cascader这个组件给关闭掉
-          let {cascader} = this.$refs
-          let {target} = e;
-            if (target == cascader || cascader.contains(target)) {
-                return 
-            } else {
-                this.close()
-            }
-        },
         open() {
             this.popoverVisible = true;
-            this.$nextTick(() => {
-                document.addEventListener('click',this.onClickDocument)
-            })
         },
         close() {
-            console.log('close了===')
             this.popoverVisible = false;
-            document.removeEventListener('click',this.onClickDocument)
         },
         toggle() {
             if (this.popoverVisible) {

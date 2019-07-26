@@ -19,6 +19,15 @@
             <div>弹出的内容啊啊啊啊</div>
         </template>   
     </popover>
+    <Cascader 
+        :source.sync="source" 
+        popover-height="200px"
+        :selected.sync="selected"
+        @update:selected="onUpdateSelected"
+        :loadData="loadData"
+    >
+        <!-- 这里是级联选择器 -->
+    </Cascader>
     </div>
 </div>
     
