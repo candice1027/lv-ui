@@ -8,8 +8,8 @@
             :key="index" 
             @click="onClickLabel(item)"
         >
-            {{item.name}}
-            <gIcon v-if="item.children" class="icon" iconName="right"></gIcon>
+            <span class="name">{{item.name}}</span>
+            <gIcon v-if="rightArrowVisible(item)" class="icon" iconName="right"></gIcon>
         </div>
         </div>
     <div class="right" v-if="rightItems">
@@ -19,6 +19,7 @@
             :level="level+1"
             :selected="selected"
             @update:selected="onUpdateSelected"
+            :loadData="loadData"
        ></cascader-items>
     </div>
 </div>   
@@ -43,6 +44,9 @@ export default {
         level: {
             type: Number,
             default: 0
+        },
+        loadData: {
+            type: Function
         }
     },
     components: {
@@ -62,23 +66,27 @@ export default {
         },
         onUpdateSelected(newSelected) {
             this.$emit('update:selected',newSelected)
-        }
+        },
+        rightArrowVisible(item) {
+            return this.loadData ? !item.isLeaf : item.children
+        },
     },
-    computed: {
+    computed: { 
         rightItems() {
-            let currentSelected = this.selected[this.level]
-            if (currentSelected && currentSelected.children) {
-                return currentSelected.children
-            } else {
-                return null
+            if (this.selected[this.level]) {
+                let selected = this.items.filter((item) => item.name === this.selected[this.level].name);
+                if (selected && selected[0].children && selected[0].children.length > 0) {
+                    return selected[0].children
+                }
             }
+            // let currentSelected = this.selected[this.level]
+            // if (currentSelected && currentSelected.children) {
+            //     return currentSelected.children
+            // } else {
+            //     return null
+            // }
         }
     },
-    watch: {
-        selected:function() {
-            console.log('selected更新了啊')
-        }
-    }
 }
 </script>
 <style lang="scss" scoped>
@@ -102,8 +110,19 @@ export default {
         padding: .3em 1em;
         display: flex;
         align-items: center;
+        color: #666;
+        white-space: nowrap;
+        &:hover {
+            background-color: #ccc;
+            cursor: pointer;
+            color: #333;
+        }
+        > .name {
+            margin-right: 1em;
+            user-select: none;
+        }
         .icon {
-            margin-left: .3em;
+            margin-left: auto;
         }
     }
 }
