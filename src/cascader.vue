@@ -15,6 +15,7 @@
             :level="0"
             @update:selected="onUpdateSelected"
             :loadData="loadData"
+            :loading-item = loadingItem
         ></cascader-items>
     </div> 
 </div>
@@ -28,6 +29,7 @@ export default {
     data() {
         return {
             popoverVisible: false,
+            loadingItem: {},
         }
     },
     props: {
@@ -103,6 +105,7 @@ export default {
                 }
             }
             let updateSource = (result) => {
+                this.loadingItem = {};
                 //传递给用户的回调函数，用户在通过接口获取到数据之后，调用这个方法，将获取到的数据传进来
                let copy = JSON.parse(JSON.stringify(this.source))
                let toUpdate = complex(copy,lastItem.id)
@@ -111,7 +114,11 @@ export default {
                //拿到result 之后，要更新source下的某一项给他添加children,children的值就是copy
             }
             if (!lastItem.isLeaf) {
-               this.loadData && this.loadData(lastItem,updateSource)
+                if (this.loadData) {
+                    this.loadData(lastItem,updateSource)
+                    this.loadingItem = lastItem;
+                }
+
                //如果是静态传入的数据，就不需要去调接口去获取了
             }    
         },

@@ -10,3 +10,7 @@ $border-color-light: lighten($border-color, 20%);
 .box-shadow {
     box-shadow: 0 0 0 2px rgba(0,0,0,.05)
 }
+@keyframes spin {
+    0% {transform: rotate(0deg)}
+    100% {transform:rotate(360deg)}
+}

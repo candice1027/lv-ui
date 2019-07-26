@@ -9,7 +9,14 @@
             @click="onClickLabel(item)"
         >
             <span class="name">{{item.name}}</span>
-            <gIcon v-if="rightArrowVisible(item)" class="icon" iconName="right"></gIcon>
+            <span class="icons">
+                <template v-if="item.name === loadingItem.name">
+                    <gIcon class="icon loading" iconName="loading"></gIcon>
+                </template>
+                <template v-else>
+                    <gIcon v-if="rightArrowVisible(item)" class="icon" iconName="right"></gIcon>
+                </template> 
+            </span>
         </div>
         </div>
     <div class="right" v-if="rightItems">
@@ -20,6 +27,7 @@
             :selected="selected"
             @update:selected="onUpdateSelected"
             :loadData="loadData"
+            :loading-item = loadingItem
        ></cascader-items>
     </div>
 </div>   
@@ -47,6 +55,10 @@ export default {
         },
         loadData: {
             type: Function
+        },
+        loadingItem: {
+            type: Object,
+            default: ()=>({})
         }
     },
     components: {
@@ -79,12 +91,6 @@ export default {
                     return selected[0].children
                 }
             }
-            // let currentSelected = this.selected[this.level]
-            // if (currentSelected && currentSelected.children) {
-            //     return currentSelected.children
-            // } else {
-            //     return null
-            // }
         }
     },
 }
@@ -121,8 +127,11 @@ export default {
             margin-right: 1em;
             user-select: none;
         }
-        .icon {
+        .icons {
             margin-left: auto;
+            .loading {
+                animation: spin 2s infinite linear;
+            }
         }
     }
 }
