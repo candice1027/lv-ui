@@ -152,7 +152,7 @@ $border-radius: 5px;
 }
 .content-wrapper {
   position: absolute;
-  border: 1px solid $border-color;
+  border: 1px solid #ccc;
   filter: drop-shadow(0 1px 1px rgba(0,0,0,.5));
   background: #fff;
   border-radius: $border-radius;
@@ -179,7 +179,7 @@ $border-radius: 5px;
     }
     &::before {
       top: 100%;
-      border-top-color: black;
+      border-top-color: #ccc;
     }
     &::after {
       top: calc(100% - 1px);
@@ -194,7 +194,7 @@ $border-radius: 5px;
     }
     &::before {
       bottom: 100%;
-      border-bottom-color: black;
+      border-bottom-color: #ccc;
     }
     &::after {
       bottom: calc(100% - 1px);
@@ -211,7 +211,7 @@ $border-radius: 5px;
       border-right: none;
     }
     &::before {
-      border-left-color: black;
+      border-left-color: #ccc;
     }
     &::after {
       left: calc(100% - 1px);
@@ -227,7 +227,7 @@ $border-radius: 5px;
     }
     &::before {
       right: 100%;
-      border-right-color: black;
+      border-right-color: #ccc;
     }
     &::after {
       right: calc(100% - 1px);

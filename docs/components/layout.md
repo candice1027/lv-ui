@@ -1,10 +1,11 @@
 ---
-title: button
+title: layout
 sidebarDepth: 2
 ---
-# 按钮
+# layout布局
 ## 使用方法
+
 <ClientOnly>
-  <button-demos></button-demos>
+  <layout-demos></layout-demos>
 </ClientOnly>
 

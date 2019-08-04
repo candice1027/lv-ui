@@ -1,10 +1,10 @@
 ---
-title: button
+title: popover
 sidebarDepth: 2
 ---
-# 按钮
+# popover组件
 ## 使用方法
 <ClientOnly>
-  <button-demos></button-demos>
+  <popover-demos></popover-demos>
 </ClientOnly>
 

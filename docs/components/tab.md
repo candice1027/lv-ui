@@ -1,10 +1,10 @@
 ---
-title: button
+title: tab
 sidebarDepth: 2
 ---
-# 按钮
+# tab组件
 ## 使用方法
 <ClientOnly>
-  <button-demos></button-demos>
+  <tab-demos></tab-demos>
 </ClientOnly>
 

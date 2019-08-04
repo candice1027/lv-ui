@@ -49,7 +49,7 @@ export default {
     animation: spin .5s infinite linear;
 }
 .g-button{
-    font-size: $font-size;
+    font-size: 20px;
     height: $button-height;
     padding: 0 1em;
     border-radius: $border-radius;

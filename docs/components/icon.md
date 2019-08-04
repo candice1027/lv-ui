@@ -1,10 +1,10 @@
 ---
-title: button
+title: icon
 sidebarDepth: 2
 ---
-# 按钮
+# Icon
 ## 使用方法
 <ClientOnly>
-  <button-demos></button-demos>
+  <icon-demos></icon-demos>
 </ClientOnly>
 

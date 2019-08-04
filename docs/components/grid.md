@@ -1,10 +1,10 @@
 ---
-title: button
+title: grid
 sidebarDepth: 2
 ---
-# 按钮
+# Grid布局
 ## 使用方法
 <ClientOnly>
-  <button-demos></button-demos>
+  <grid-demos></grid-demos>
 </ClientOnly>
 
