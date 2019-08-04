@@ -85,7 +85,7 @@
     }
   }
 </script>
-<style>
+<style scoped>
 .inner-content {
   min-height: 36px;
   background-color: #ccc;

@@ -1,10 +1,10 @@
 {
-  "name": "hello-world",
+  "name": "lv-ui",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name lvui src/index.js",
     "test:unit": "vue-cli-service test:unit",
     "test": "vue-cli-service test:unit",
     "docs:dev": "vuepress dev docs",

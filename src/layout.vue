@@ -26,9 +26,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .layout {
+    height: 100%;
     display: flex;
-    flex-direction: column;
     flex-grow: 1;
+    flex-direction: column;
+    justify-content: space-between;
     &.hasSider {
         flex-direction: row;
     }

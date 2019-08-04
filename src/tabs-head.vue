@@ -14,9 +14,11 @@ export default {
     created() {
         this.eventBus.$on('update:selected',(name,vm) =>{
             let {width,height,top,left} = vm.$el.getBoundingClientRect();
-            console.log(left,'left====')
+            let lineEl = this.$refs.line;
+            document.body.appendChild(lineEl)
             this.$refs.line.style.width = `${width}px`;
             this.$refs.line.style.left = `${left}px`;
+            this.$refs.line.style.top = `${top+height}px`;
         })
     },
     mounted() {
@@ -29,6 +31,11 @@ export default {
 $tab-height: 40px;
 $blue: #409eff;
 $border-color: #ddd;
+.line {
+    position: absolute;
+    border-bottom: 2px solid $blue;
+    transition: all .5s;
+}
 .tabs-head {
     display: flex;
     height: $tab-height;
@@ -36,12 +43,7 @@ $border-color: #ddd;
     align-items: center;
     position: relative;
     border-bottom: 1px solid $border-color;
-    > .line {
-        position: absolute;
-        bottom: 0;
-        border-bottom: 2px solid $blue;
-        transition: all .5s;
-    }
+    
     > .actions-wrapper {
         margin-left: auto;
         display: flex;
