@@ -1,6 +1,6 @@
 {
   "name": "lv-ui",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "main": "dist/lvui.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -34,5 +34,8 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
+  ],
+  "files": [
+    "dist"
   ]
 }
