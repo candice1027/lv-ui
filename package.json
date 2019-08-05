@@ -1,7 +1,7 @@
 {
   "name": "lv-ui",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.5",
+  "main": "dist/lvui.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name lvui src/index.js",
